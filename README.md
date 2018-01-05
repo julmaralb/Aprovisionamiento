@@ -1,2 +1,2 @@
 # Aprovisionamiento
-Aplicación de compra venta test para aprender angular
+Aplicación de compra venta para practicar angular5
