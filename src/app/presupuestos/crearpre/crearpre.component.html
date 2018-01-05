@@ -1,0 +1,59 @@
+<div class="row primera">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/menu-compras">Compras</a></li>
+        <li class="breadcrumb-item"><a routerLink="/lista-presupuestos">Listado Presupuestos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Crear Presupuesto</li>
+      </ol>
+    </nav>
+    <h1>Crear Nuevo Presupuesto</h1>
+    <form [formGroup]="presupuestoForm" (ngSubmit)="onSubmit()">
+      <!-- <div class="form-group">
+        <label for="proveedor">Proveedor</label>
+        <i *ngIf="presupuestoForm.controls.proveedor.valid" class="fa fa-check-circle"></i>
+        <i *ngIf="presupuestoForm.controls.proveedor.invalid && presupuestoForm.controls.proveedor.touched" class="fa fa-exclamation-circle"></i>
+        <input type="text" class="form-control" formControlName="proveedor">
+      </div> -->
+      <div class="form-group">
+        <label for="proveedor">Proveedor</label>
+        <select class="form-control" formControlName="proveedor">
+          <option *ngFor="let proveedor of proveedores" [value]="proveedor.nombre">{{proveedor.nombre}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" formControlName="fecha">
+      </div>
+      <div class="form-group">
+        <label for="concepto">Concepto</label>
+        <input type="text" class="form-control" formControlName="concepto">
+      </div>
+      <div class="form-group">
+        <label for="importe">Importe</label>
+        <input type="number" class="form-control" formControlName="importe">
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo de IVA</label>
+        <select class="form-control" formControlName="tipo">
+          <option value=0>0 %</option>
+          <option value=0.04>4 %</option>
+          <option value=0.1>10 %</option>
+          <option value=0.21>21 %</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="iva">Importe IVA</label>
+        <input type="number" class="form-control" formControlName="iva" [(ngModel)]="presupuestoForm.value.iva" readonly>
+      </div>
+      <div class="form-group">
+        <label for="total">Total Presupuesto</label>
+        <input type="number" class="form-control" formControlName="total" [(ngModel)]="presupuestoForm.value.total" readonly>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="presupuestoForm.invalid">Añadir presupuesto</button>
+    </form>
+  </div>
+</div>
+<p *ngIf="enviado" class="alert alert-success mensaje">Presupuesto creado correctamente</p>
+<a class="btn btn-danger" routerLink="/lista-presupuestos">Cancelar</a>

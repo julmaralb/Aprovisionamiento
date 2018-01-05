@@ -1,0 +1,74 @@
+<div class="row primera">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/menu-compras">Compras</a></li>
+        <li class="breadcrumb-item"><a routerLink="/lista-facturas">Listado Facturas</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Crear Factura</li>
+      </ol>
+    </nav>
+    <h1>Crear Nueva Factura</h1>
+    <form [formGroup]="facturaForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Proveedor</label>
+        <input type="text" class="form-control" formControlName="proveedor">
+      </div>
+      <div class="form-group">
+        <label>Fecha Factura</label>
+        <input type="date" class="form-control" formControlName="fecha">
+      </div>
+      <!-- Array de items -->
+      <div formArrayName="items">
+        <div *ngFor="let item of facturaForm.controls.items.controls; let i = index">
+          <div [formGroupName]="i" class="form-row">
+            <div class="form-group col-md-1">
+              <label>Nº</label>
+              <input type="text" class="form-control" value="{{i+1}}" disabled>
+            </div>
+            <div class="form-group col-md-8">
+              <label>Producto</label>
+              <input type="text" class="form-control" formControlName="producto">
+            </div>
+            <div class="form-group col-md-2">
+              <label>Importe</label>
+              <input type="number" class="form-control" formControlName="importe">
+            </div>
+            <div class="form-group col-md-1 eliminar">
+              <button class="btn btn-danger" (click)="removeItem(i)">-</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin del array -->
+      <div class="form-group">
+        <a class="btn btn-success" (click)="addItem()">+</a>
+      </div>
+      <div class="form-group">
+        <label>Base Imponible</label>
+        <input type="number" class="form-control" formControlName="base" [ngModel]="facturaForm.value.base" readonly>
+      </div>
+      <div class="form-group">
+          <label for="tipo">Tipo de IVA</label>
+          <select class="form-control" formControlName="tipo">
+            <option value=0>0 %</option>
+            <option value=0.04>4 %</option>
+            <option value=0.1>10 %</option>
+            <option value=0.21>21 %</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="iva">Importe IVA</label>
+          <input type="number" class="form-control" formControlName="iva" [(ngModel)]="facturaForm.value.iva" readonly>
+        </div>
+        <div class="form-group">
+          <label for="total">Total Factura</label>
+          <input type="number" class="form-control" formControlName="total" [(ngModel)]="facturaForm.value.total" readonly>
+        </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </div>
+    </form>
+    <pre>{{facturaForm.value | json}}</pre>
+  </div>
+</div>

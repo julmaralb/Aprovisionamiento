@@ -1,0 +1,17 @@
+<div class="row primera">
+  <div class="col-md-6">
+    <h1>Bienvenidos</h1>
+    <h2 *ngIf="!isAuth()">Por favor <a routerLink="/login">inicie sesión</a></h2>
+  </div>
+</div>
+
+<div class="row justify-content-around primera" *ngIf="isAuth()">
+  <div class="col-md-4 verde" routerLink="/menu-compras">
+    <span><i class="fas fa-shopping-cart"></i></span>
+    <h4>Compras</h4>
+  </div>
+  <div class="col-md-4 naranja" routerLink="/menu-ventas">
+    <span><i class="fas fa-euro-sign"></i></span>
+    <h4>Ventas</h4>
+  </div>
+</div>

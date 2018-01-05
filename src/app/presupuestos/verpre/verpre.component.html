@@ -1,0 +1,45 @@
+<div class="row primera">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/menu-compras">Compras</a></li>
+        <li class="breadcrumb-item"><a routerLink="/lista-presupuestos">Listado Presupuestos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detalles Presupuesto</li>
+      </ol>
+    </nav>
+    <h1>Detalles del Presupuesto</h1>
+    <form [formGroup]="presupuestoForm">
+      <div class="form-group">
+        <label for="proveedor">Proveedor</label>
+        <input type="text" class="form-control" formControlName="proveedor" [(ngModel)]="presupuesto.proveedor" readonly>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" formControlName="fecha" [(ngModel)]="presupuesto.fecha" readonly>
+      </div>
+      <div class="form-group">
+        <label for="concepto">Concepto</label>
+        <input type="text" class="form-control" formControlName="concepto" [(ngModel)]="presupuesto.concepto" readonly>
+      </div>
+      <div class="form-group">
+        <label for="importe">Importe</label>
+        <input type="number" class="form-control" formControlName="importe" [(ngModel)]="presupuesto.importe" readonly>
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo de IVA</label>
+        <input class="form-control" formControlName="tipo" value="{{presupuesto.tipo *100}} %" disabled>
+      </div>
+      <div class="form-group">
+        <label for="iva">Importe IVA</label>
+        <input type="number" class="form-control" formControlName="iva" [(ngModel)]="presupuesto.iva" readonly>
+      </div>
+      <div class="form-group">
+        <label for="total">Total Presupuesto</label>
+        <input type="number" class="form-control" formControlName="total" [(ngModel)]="presupuesto.total" readonly>
+      </div>
+    </form>
+    <a class="btn btn-primary" routerLink="/editar-presupuesto/{{presupuesto._id}}">Editar</a>
+    <a class="btn btn-danger" routerLink="/lista-presupuestos">Cancelar</a>
+  </div>
+</div>

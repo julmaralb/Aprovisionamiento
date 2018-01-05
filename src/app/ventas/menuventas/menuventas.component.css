@@ -1,0 +1,36 @@
+.azul {
+    background-color: rgb(31, 153, 224);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.azul:hover {
+    background-color: lightskyblue;
+    cursor: pointer;
+}
+
+.verde {
+    background-color: #20b2aa;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.verde:hover {
+    background-color: #1b9189;
+    cursor: pointer;
+}
+
+span {
+    font-size: 40px;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+h4 {
+    display: inline;
+    vertical-align: middle;
+}

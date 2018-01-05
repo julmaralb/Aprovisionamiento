@@ -1,0 +1,86 @@
+<div class="row primera">
+  <div class="col-md-6">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/menu-compras">Compras</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Listado Presupuestos</li>
+      </ol>
+    </nav>
+    <h1>Lista de Presupuestos</h1>
+  </div>
+  <div class="col-md-6">
+    <a routerLink="/crear-presupuesto" class="btn btn-primary float-md-right">Crear nuevo presupuesto</a>
+  </div>
+</div>
+<label class="custom-control custom-radio">
+    <input id="radio1" name="radio" type="radio" class="custom-control-input" (click)="setItemsPerPage(5)" checked>
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">5</span>
+  </label>
+  <label class="custom-control custom-radio">
+    <input id="radio2" name="radio" type="radio" class="custom-control-input" (click)="setItemsPerPage(10)">
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">10</span>
+  </label>
+<div class="row">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th (click)="sort('proveedor')">Proveedor
+        <span *ngIf="key!=='proveedor'"><i class="fas fa-sort"></i></span>
+        <span *ngIf="!reverse && key=='proveedor'"><i style="color: green" class="fas fa-sort-down"></i></span>
+        <span *ngIf="reverse && key=='proveedor'"><i style="color: green" class="fas fa-sort-up"></i></span>
+      </th>
+      <th (click)="sort('fecha')">Fecha
+        <span *ngIf="key!=='fecha'"><i class="fas fa-sort"></i></span>
+        <span *ngIf="!reverse && key=='fecha'"><i style="color: green" class="fas fa-sort-down"></i></span>
+        <span *ngIf="reverse && key=='fecha'"><i style="color: green" class="fas fa-sort-up"></i></span>
+      </th>
+      <th (click)="sort('total')">Total con IVA
+        <span *ngIf="key!=='total'"><i class="fas fa-sort"></i></span>
+        <span *ngIf="!reverse && key=='total'"><i style="color: green" class="fas fa-sort-down"></i></span>
+        <span *ngIf="reverse && key=='total'"><i style="color: green" class="fas fa-sort-up"></i></span>
+      </th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let presupuesto of presupuestos | orderBy : key : reverse | paginate : { itemsPerPage: ipp, currentPage: p }">
+      <td>{{presupuesto.proveedor}}</td>
+      <td>{{presupuesto.fecha | date : 'd/M/yy'}}</td>
+      <td>{{presupuesto.total | euros}}</td>
+      <td>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" (click)="setId(presupuesto._id)">
+          Borrar
+        </button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar Presupuesto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ¿Está usted seguro de que quiere borrar este presupuesto?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="delete()" data-dismiss="modal">Borrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <a class="btn btn-success" routerLink="/editar-presupuesto/{{presupuesto._id}}">Editar</a>
+      </td>
+      <td>
+        <a  routerLink='/ver-presupuesto/{{presupuesto._id}}'>Visualizar <i class="fas fa-eye"></i> </a>
+      </td>
+    </tr>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

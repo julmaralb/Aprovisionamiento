@@ -1,0 +1,56 @@
+<div class="row primera">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/menu-compras">Compras</a></li>
+        <li class="breadcrumb-item"><a routerLink="/lista-proveedores">Listado Proveedores</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Editar Proveedor</li>
+      </ol>
+    </nav>
+    <h1>Editar Proveedor</h1>
+    <button class="btn btn-danger float-md-right" (click)="delete(proveedor._id)">Borrar</button>
+    <form [formGroup]="proveedorForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre" [(ngModel)]="proveedor.nombre">
+      </div>
+      <div class="form-group">
+        <label for="cif">CIF</label>
+        <input type="text" class="form-control" formControlName="cif" [(ngModel)]="proveedor.cif">
+      </div>
+      <div class="form-group">
+        <label for="domicilio">Domicilio</label>
+        <input type="text" class="form-control" formControlName="domicilio" [(ngModel)]="proveedor.domicilio"> 
+      </div>
+      <div class="form-group">
+        <label for="cp">Código Postal</label>
+        <input type="number" class="form-control" formControlName="cp" [(ngModel)]="proveedor.cp">
+      </div>
+      <div class="form-group">
+        <label for="localidad">Localidad</label>
+        <input type="text" class="form-control" formControlName="localidad" [(ngModel)]="proveedor.localidad">
+      </div>
+      <div class="form-group">
+        <label for="provincia">Provincia</label>
+        <select class="form-control" formControlName="provincia" [(ngModel)]="proveedor.provincia">
+          <option *ngFor="let provincia of provincias" [ngValue]="provincia">{{provincia}}</option>
+        </select>
+      </div>
+      <!-- <div class="form-group">
+        <label for="provincia">Provincia</label>
+        <input type="text" class="form-control" formControlName="provincia" [(ngModel)]="proveedor.provincia">
+      </div> -->
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input type="number" class="form-control" formControlName="telefono" [(ngModel)]="proveedor.telefono">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" formControlName="email" [(ngModel)]="proveedor.email">
+      </div>
+      <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+      <a class="btn btn-danger" routerLink="/lista-proveedores">Cancelar</a>
+    </form>
+  </div>
+</div>

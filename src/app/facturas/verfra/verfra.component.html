@@ -1,0 +1,61 @@
+<div class="row primera">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/menu-compras">Compras</a></li>
+        <li class="breadcrumb-item"><a routerLink="/lista-facturas">Listado Facturas</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detalles Factura</li>
+      </ol>
+    </nav>
+    <h1>Detalle Factura</h1>
+    <form [formGroup]="facturaForm">
+      <div class="form-group">
+        <label>Proveedor</label>
+        <input type="text" class="form-control" formControlName="proveedor" [(ngModel)]="factura.proveedor" readonly>
+      </div>
+      <div class="form-group">
+        <label>Fecha Factura</label>
+        <input type="date" class="form-control" formControlName="fecha" [(ngModel)]="factura.fecha" readonly>
+      </div>
+      <!-- Array de items -->
+      <div formArrayName="items">
+        <div *ngFor="let item of factura.items; let i = index">
+          <div class="form-row">
+            <div class="form-group col-md-1">
+              <label>Nº</label>
+              <input type="text" class="form-control" value="{{i+1}}" readonly>
+            </div>
+            <div class="form-group col-md-8">
+              <label>Producto</label>
+              <input type="text" class="form-control" value="{{item.producto}}" readonly>
+            </div>
+            <div class="form-group col-md-2">
+              <label>Importe</label>
+              <input type="number" class="form-control" value="{{item.importe}}" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin del array -->
+      <div class="form-group">
+        <label>Base Imponible</label>
+        <input type="number" class="form-control" formControlName="base" [(ngModel)]="factura.base" readonly>
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo de IVA</label>
+        <input class="form-control" formControlName="tipo" value="{{factura.tipo *100}} %" disabled>
+      </div>
+      <div class="form-group">
+        <label for="iva">Importe IVA</label>
+        <input type="number" class="form-control" formControlName="iva" [(ngModel)]="factura.iva" readonly>
+      </div>
+      <div class="form-group">
+        <label for="total">Total Factura</label>
+        <input type="number" class="form-control" formControlName="total" [(ngModel)]="factura.total" readonly>
+      </div>
+    </form>
+    <a class="btn btn-primary" routerLink="/editar-factura/{{factura._id}}">Editar</a>
+    <a class="btn btn-danger" routerLink="/lista-facturas">Cancelar</a>
+  </div>
+</div>

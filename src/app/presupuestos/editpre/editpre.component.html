@@ -1,0 +1,52 @@
+<div class="row primera">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/menu-compras">Compras</a></li>
+        <li class="breadcrumb-item"><a routerLink="/lista-presupuestos">Listado Presupuestos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Editar Presupuesto</li>
+      </ol>
+    </nav>
+    <h1>Editar Presupuesto</h1>
+    <button class="btn btn-danger float-md-right" (click)="delete(presupuesto._id)">Borrar</button>
+    <form [formGroup]="presupuestoForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="proveedor">Proveedor</label>
+        <input type="text" class="form-control" formControlName="proveedor" [(ngModel)]="presupuesto.proveedor">
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" formControlName="fecha" [(ngModel)]="presupuesto.fecha">
+      </div>
+      <div class="form-group">
+        <label for="concepto">Concepto</label>
+        <input type="text" class="form-control" formControlName="concepto" [(ngModel)]="presupuesto.concepto">
+      </div>
+      <div class="form-group">
+        <label for="importe">Importe</label>
+        <input type="number" class="form-control" formControlName="importe" [(ngModel)]="presupuesto.importe">
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo de IVA</label>
+        <select class="form-control" formControlName="tipo" [(ngModel)]="presupuesto.tipo">
+          <option [ngValue]=0>0 %</option>
+          <option [ngValue]=0.04>4 %</option>
+          <option [ngValue]=0.1>10 %</option>
+          <option [ngValue]=0.21>21 %</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="iva">Importe IVA</label>
+        <input type="number" class="form-control" formControlName="iva" [(ngModel)]="presupuestoForm.value.iva">
+      </div>
+      <div class="form-group">
+        <label for="total">Total Presupuesto</label>
+        <input type="number" class="form-control" formControlName="total" [(ngModel)]="presupuestoForm.value.total">
+      </div>
+      <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+      <a class="btn btn-danger" routerLink="/lista-presupuestos">Cancelar</a>
+    </form>
+  </div>
+</div>
+

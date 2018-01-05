@@ -1,0 +1,49 @@
+.verde {
+    background-color: #20b2aa;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.verde:hover {
+    background-color: #1b9189;
+    cursor: pointer;
+}
+
+.naranja {
+    background-color: #ffa07a;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.naranja:hover {
+    background-color: #eb784a;
+    cursor: pointer;
+}
+
+.rojo {
+    background-color: rgb(151, 25, 25);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.rojo:hover {
+    background-color: rgb(128, 24, 24);
+    cursor: pointer;
+}
+
+span {
+    font-size: 40px;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+h4 {
+    display: inline;
+    vertical-align: middle;
+}
